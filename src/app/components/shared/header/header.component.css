@@ -1,0 +1,21 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+
+.material-icons.green { 
+    color: green; 
+}
+
+.logo{
+    font-size: 50px;
+    width: 50px;
+  }
+
+.mat-icon.header-icon{
+    font-size: 40px;
+    width: 40px;
+  }
+
+  .padding-left{
+      padding-left: 10px;
+  }
