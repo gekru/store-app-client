@@ -1,12 +1,17 @@
 <header>
     <mat-toolbar class="mat-elevation-z6">
-        <a mat-icon-button class="material-icons green">
+        <a mat-icon-button class="material-icons green" [routerLink]="['']">
             <mat-icon class="logo">import_contacts</mat-icon>
         </a>
         <span class="padding-left">Book Publishing Company</span>
         <span class="spacer"></span>
-        <button mat-icon-button>
-            <mat-icon class="header-icon">account_circle</mat-icon>
-        </button>
+        <div *ngIf="!hideIcons()">
+            <button mat-icon-button *ngIf="!(isLoggedIn$ | async)">
+                <mat-icon class="header-icon" [routerLink]="['/sign-in']">account_circle</mat-icon>
+            </button>
+            <button mat-icon-button *ngIf="(isLoggedIn$ | async)">
+                <mat-icon class="header-icon" [routerLink]="['/']">logout</mat-icon>
+            </button>
+        </div>
     </mat-toolbar>
 </header>
