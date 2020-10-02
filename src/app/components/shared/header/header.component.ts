@@ -13,7 +13,6 @@ import { isLoggedIn } from '../../account/account-store/account.selectors';
 
 export class HeaderComponent implements OnInit {
 
-  AppRoutes: AppRoutes;
   isLoggedIn$: Observable<any> = this.store$.pipe(select(isLoggedIn));
 
   constructor(private store$: Store, private router: Router) {

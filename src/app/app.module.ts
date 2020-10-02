@@ -14,13 +14,15 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AccountModule } from './modules/account/account.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
