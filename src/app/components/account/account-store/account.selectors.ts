@@ -1,17 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { SIGNIN_FEATURE_NAME } from './account.reducer';
-import { SignInState } from './account.state';
+import { AppState } from 'src/app/store/state/app.state';
+import { ACCOUNT_FEATURE_NAME } from './account.reducer';
 
-const getFeature = createFeatureSelector<SignInState>(SIGNIN_FEATURE_NAME);
+const getFeature = createFeatureSelector<AppState>(ACCOUNT_FEATURE_NAME);
 
 export const getLoading = createSelector(
     getFeature,
     state => state.loading
-);
-
-export const getLoaded = createSelector(
-    getFeature,
-    state => state.loaded
 );
 
 export const getServerError = createSelector(
@@ -21,7 +16,7 @@ export const getServerError = createSelector(
 
 export const getSignInData = createSelector(
     getFeature,
-    state => state.signInData
+    state => state.signInState.signInData
 );
 
 // export const getAccessToken = createSelector(

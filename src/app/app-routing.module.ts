@@ -8,7 +8,7 @@ export const enum AppRoutes {
 
 const routes: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
-  {path: AppRoutes.SignIn, component: SignInComponent}
+  {path: AppRoutes.SignIn, component: SignInComponent},
 ];
 
 @NgModule({

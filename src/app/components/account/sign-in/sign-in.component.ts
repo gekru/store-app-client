@@ -6,7 +6,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SignInModel } from 'src/app/models/sign-in.model';
 import { signIn } from '../account-store/account.actions';
-import { getLoaded, getLoading, getServerError, isLoggedIn } from '../account-store/account.selectors';
+import { getLoading, getServerError, isLoggedIn } from '../account-store/account.selectors';
 
 @Component({
   selector: 'app-sign-in',
@@ -20,12 +20,11 @@ export class SignInComponent implements OnInit {
   formGroup: FormGroup;
 
   loading$: Observable<boolean> = this.store$.pipe(select(getLoading));
-  loaded$: Observable<boolean> = this.store$.pipe(select(getLoaded));
   serverError$: Observable<String[]> = this.store$.pipe(select(getServerError));
 
   public isLoggedIn$ = this.store$.pipe(select(isLoggedIn)).subscribe(isLoggedIn => {
     if (isLoggedIn) {
-      this.router.navigateByUrl("/");
+      this.router.navigate(['/']);
     }
   });
 
@@ -47,7 +46,6 @@ export class SignInComponent implements OnInit {
     if (this.formGroup.invalid) {
       return;
     }
-
     this.store$.dispatch(signIn({ signInModel }));
   }
 
@@ -77,7 +75,8 @@ export class SignInComponent implements OnInit {
     }
   }
 
-// Block for input Admin email and password
+
+  // Block for input Admin email and password
 
   inputAdminData: boolean;
 

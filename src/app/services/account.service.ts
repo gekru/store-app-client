@@ -4,8 +4,9 @@ import { environment } from 'src/environments/environment';
 import { JwtTokenModel } from '../models/jwt-token.model';
 import { SignInModel } from '../models/sign-in.model';
 
-enum AuthRoutes {
+enum ApiAuthRoutes {
   SignIn = 'api/account/login',
+  SignOut = 'api/account/logout',
 }
 
 @Injectable({
@@ -22,7 +23,11 @@ export class AccountService {
 
 
   signIn(signInModel: SignInModel) {
-    return this.http.post<JwtTokenModel>(this.myApiUrl + AuthRoutes.SignIn, signInModel)
+    return this.http.post<JwtTokenModel>(this.myApiUrl + ApiAuthRoutes.SignIn, signInModel);
+  }
+
+  signOut() {
+    return this.http.post(this.myApiUrl + ApiAuthRoutes.SignOut, null);
   }
 }
 

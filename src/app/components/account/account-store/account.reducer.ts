@@ -1,36 +1,55 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { signIn, signInSuccess, signInFailure } from './account.actions';
-import { initialSignInState, SignInState } from './account.state';
+import { AppState, initialAppState } from 'src/app/store/state/app.state';
+import * as AccountActions from './account.actions';
 
-export const SIGNIN_FEATURE_NAME = 'signInReducer';
+export const ACCOUNT_FEATURE_NAME = 'accountReducer';
 
-const createSignInReducer = createReducer(
-    initialSignInState,
-    on(signIn, state => ({
+const createAccauntReducer = createReducer(
+    initialAppState,
+    // SignIn block
+    on(AccountActions.signIn, state => ({
         ...state,
         loading: true
     })),
-    on(signInSuccess, (state, { signInData }) => ({
+    on(AccountActions.signInSuccess, (state, { signInData }) => ({
         ...state,
         signInData: signInData,
-        loaded: true,
         loading: false,
         isLoggedIn: true
     })),
-    on(signInFailure, (state, { serverError }) => {
+    on(AccountActions.signInFailure, (state, { serverError }) => {
         debugger
         return ({
             ...state,
-            loaded: true,
             loading: false,
             isLoggedIn: false,
             serverError: serverError
         })
+    }),
+    // SignOut block    
+    on(AccountActions.signOut, state => ({
+        ...state,
+        loading: true
+    })),
+    on(AccountActions.signOutSuccess, (state) => ({
+        ...state,
+        loading: false,
+        isLoggedIn: false
+    })),
+    on(AccountActions.signOutFailure, (state, { serverError }) => {
+        debugger
+        return ({
+            ...state,
+            loading: false,
+            isLoggedIn: true,
+            serverError: serverError
+        })
     })
+
 );
 
-export function signInReducer(state: SignInState | undefined, action: Action) {
-    return createSignInReducer(state, action);
+export function accountReducer(state: AppState | undefined, action: Action) {
+    return createAccauntReducer(state, action);
 }
 
 // const _loginReducer = createReducer(

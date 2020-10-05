@@ -10,7 +10,7 @@
                 <mat-icon class="header-icon" [routerLink]="['/sign-in']">account_circle</mat-icon>
             </button>
             <button mat-icon-button *ngIf="(isLoggedIn$ | async)">
-                <mat-icon class="header-icon" [routerLink]="['/']">logout</mat-icon>
+                <mat-icon class="header-icon" (click)="signOut()">logout</mat-icon>
             </button>
         </div>
     </mat-toolbar>
