@@ -24,7 +24,8 @@ export class HeaderComponent implements OnInit {
 
 
   hideIcons(): boolean {
-    if (this.router.url === '/' + AppRoutes.SignIn) {
+    if (this.router.url === '/' + AppRoutes.SignIn
+     || this.router.url === '/' + AppRoutes.SignUp) {
       return true;
     }
     return false;

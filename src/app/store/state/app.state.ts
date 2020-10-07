@@ -1,10 +1,11 @@
-import { initialSignInState, SignInState, } from 'src/app/components/account/account-store/account.state';
+import { initialSignInState, initialSignUpState, SignInState, SignUpState, } from 'src/app/components/account/account-store/account.state';
 
 export interface AppState {
     loading: boolean;
     serverError: string[];
     isLoggedIn: boolean;
     signInState: SignInState;
+    signUpState: SignUpState;
 };
 
 export const initialAppState: AppState = {
@@ -12,4 +13,5 @@ export const initialAppState: AppState = {
     isLoggedIn: false,
     serverError: null,
     signInState: initialSignInState,
+    signUpState: initialSignUpState,
 };

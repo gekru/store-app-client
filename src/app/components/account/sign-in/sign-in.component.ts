@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
+import { AppRoutes } from 'src/app/app-routing.module';
 import { SignInModel } from 'src/app/models/sign-in.model';
 import { signIn } from '../account-store/account.actions';
 import { getLoading, getServerError, isLoggedIn } from '../account-store/account.selectors';
@@ -73,6 +74,10 @@ export class SignInComponent implements OnInit {
     if (passwordField.hasError('minlength')) {
       return 'The password you provided must have at least 6 characters';
     }
+  }
+
+  navigateToSignUp() {
+    return this.router.navigate([AppRoutes.SignUp])
   }
 
 

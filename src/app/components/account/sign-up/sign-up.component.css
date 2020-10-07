@@ -4,22 +4,17 @@
     margin: 80px 0px;
   }
 
-form {
-  padding-top: 10px;
-}
-
 .signin-card {
-  max-width: 400px;
+  max-width: 500px;
 }
 
-body {
-    filter: blur(8px);
+.mat-form-field-wrapper {
+  padding-bottom: 0px;
 }
-
 .mat-form-field {
     width: 100%;
     min-width: 200px;
-}
+  }
 
 mat-card-title,
 mat-card-content {
@@ -27,12 +22,15 @@ mat-card-content {
   justify-content: left;
  }
 
-.logo {
+form {
+  padding-top: 10px;
+}
+
+.logo{
   display: flex;
   font-size: 100px;
   width: 100px;
   justify-content: center;
-  cursor: pointer;
 }
 
 .logo-placement i {
@@ -41,43 +39,25 @@ mat-card-content {
   vertical-align: middle;
 }
 
-.logo-placement i:hover {
- opacity: 0.8;
- color: rgb(0, 45, 0);
-}
-
-.sign-in-button {
+.button {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
-
-.sign-up-block{
-  display: inline; 
-  padding-top: 18px;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: auto;
+.sign-in-container{
+  padding-top: 20px;
 }
-
-.sign-up-block > div{
-  text-align: center;
- }
-
-.sign-up-button {
-  width: 50%;
-  height: 30px; 
-  line-height: inherit;
-}
-
 /* .square-green-button {
   background-color: green;
   color: #fff;
-  border-radius: 3px;
+  border-radius: 2px;
   border-bottom: 2px solid #000 ;
-  border-right: 2px solid #000 ;
+  border-right: 3px solid #000 ;
 } */
 
+mat-error{
+  text-align: end;
+}
 /* ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end, 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
   border-radius: 0px !important;
