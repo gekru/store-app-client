@@ -30,3 +30,13 @@ export const isLoggedIn = createSelector(
     getFeature,
     state => state.isLoggedIn
 );
+
+export const isSignedUp = createSelector(
+    getFeature,
+    state => state.signUpState.isSignedUp
+);
+
+// export const getFirstName = createSelector(
+//     getFeature,
+//     state => state.signUpState.signUpModel.firstName
+// );

@@ -52,16 +52,23 @@ const createAccauntReducer = createReducer(
     on(AccountActions.signUpSuccess, (state, { payload }) => ({
         ...state,
         payload: payload,
+        signUpState: {
+            ...state.signUpState,
+            isSignedUp: true
+        },
         loading: false,
-        isLoggedIn: true
+
     })),
     on(AccountActions.signUpFailure, (state, { serverError }) => {
         debugger
         return ({
             ...state,
             loading: false,
-            isLoggedIn: false,
-            serverError: serverError
+            serverError: serverError,
+            signUpState: {
+                ...state.signUpState,
+                isSignedUp: false
+            },
         })
     }),
 

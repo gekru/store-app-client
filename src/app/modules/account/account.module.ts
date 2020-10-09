@@ -9,11 +9,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from 'src/app/components/account/sign-in/sign-in.component';
 import { SignUpComponent } from 'src/app/components/account/sign-up/sign-up.component';
 import { RouterModule } from '@angular/router';
+import { EmailConfirmationComponent } from 'src/app/components/account/email-confirmation/email-confirmation.component';
 
 @NgModule({
   declarations: [
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    EmailConfirmationComponent
   ],
   imports: [
     CommonModule,

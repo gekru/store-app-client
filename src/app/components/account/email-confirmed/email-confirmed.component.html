@@ -1,0 +1,17 @@
+<mat-card class="mat-elevation-z4 confirmation-card">
+    <div class="logo-placement">
+        <i class="material-icons logo">done</i>
+    </div>
+    <div class="content">
+        <p>
+            Dear <em><strong>{{firstName}} {{lastName}}</strong></em>. Thank you for registering.
+        </p>
+    </div>
+
+    <div class="continue-block">
+        <div>
+            <button mat-raised-button (click)="navigateToSignIn()"
+                class="square-button green-button continue-button">Continue</button>
+        </div>
+    </div>
+</mat-card>

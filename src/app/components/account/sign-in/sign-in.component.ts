@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 
@@ -26,10 +27,17 @@ export class SignInComponent implements OnInit {
   public isLoggedIn$ = this.store$.pipe(select(isLoggedIn)).subscribe(isLoggedIn => {
     if (isLoggedIn) {
       this.router.navigate(['/']);
+
+      this.snackBar.open('Sign-In Successful', 'OK', {
+        duration: 2500,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'right',
+        panelClass: ['green-snackbar'],
+      });
     }
   });
 
-  constructor(private store$: Store, private router: Router) { }
+  constructor(private store$: Store, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({

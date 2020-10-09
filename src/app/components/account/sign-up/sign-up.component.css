@@ -16,6 +16,7 @@
     min-width: 200px;
   }
 
+
 mat-card-title,
 mat-card-content {
   display: flex;
@@ -31,12 +32,18 @@ form {
   font-size: 100px;
   width: 100px;
   justify-content: center;
+  cursor: pointer;
 }
 
 .logo-placement i {
   margin: auto;
   text-align: center;
   vertical-align: middle;
+}
+
+.logo-placement i:hover {
+  opacity: 0.8;
+  color: rgb(0, 45, 0);
 }
 
 .button {

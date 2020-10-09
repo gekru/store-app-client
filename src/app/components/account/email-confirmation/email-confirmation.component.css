@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  justify-content: center;
+  margin: 80px 0px;
+ }
+
+.confirmation-card {
+   max-width: 800px;
+}
+
+mat-card-title {
+  text-align: center;
+}
+
+mat-card-content {
+  padding-top: 25px;
+  text-align: justify;
+}

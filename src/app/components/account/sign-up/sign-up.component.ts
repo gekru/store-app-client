@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { AppRoutes } from 'src/app/app-routing.module';
 import { SignUpModel } from 'src/app/models/sign-up.model';
 import { signUp } from '../account-store/account.actions';
+import { isSignedUp } from '../account-store/account.selectors';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,6 +17,12 @@ export class SignUpComponent implements OnInit {
   showPassword = true;
   showConfirmPassword = true;
   formGroup: FormGroup;
+
+  public registerSuccess$ = this.store$.pipe(select(isSignedUp)).subscribe(isSignedUp => {
+    if (isSignedUp) {
+      this.router.navigate([AppRoutes.EmailConfirmation])
+    }
+  });
 
   constructor(private store$: Store, private router: Router) { }
 
@@ -112,5 +119,29 @@ export class SignUpComponent implements OnInit {
   // TODO: Fix method to navigate from html
   navigateToSignIn() {
     this.router.navigate([AppRoutes.SignIn])
+  }
+
+  // Block for input Account data
+
+  inputAccountData: boolean;
+
+  onAccountData() {
+
+    if (!this.inputAccountData) {
+      this.formGroup.get('firstName').patchValue('FirstName');
+      this.formGroup.get('lastName').patchValue('LastName');
+      this.formGroup.get('email').patchValue('anuitex@mailinator.com');
+      this.formGroup.get('password').patchValue('Password1!');
+      this.formGroup.get('confirmPassword').patchValue('Password1!');
+    }
+    else {
+      this.formGroup.get('firstName').patchValue(undefined);
+      this.formGroup.get('lastName').patchValue(undefined);
+      this.formGroup.get('email').patchValue(undefined);
+      this.formGroup.get('password').patchValue(undefined);
+      this.formGroup.get('confirmPassword').patchValue(undefined);
+    }
+
+    this.inputAccountData = !this.inputAccountData;
   }
 }

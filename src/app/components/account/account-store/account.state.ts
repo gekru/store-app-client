@@ -9,9 +9,11 @@ export const initialSignInState: SignInState = {
 };
 
 export interface SignUpState {
+    isSignedUp: boolean;
     signUpModel: SignUpModel;
 };
 
 export const initialSignUpState: SignUpState = {
+    isSignedUp: false,
     signUpModel: null
 };
