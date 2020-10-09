@@ -71,7 +71,30 @@ const createAccauntReducer = createReducer(
             },
         })
     }),
-
+    // ForgotPassword block
+    on(AccountActions.forgotPassword, state => ({
+        ...state,
+        loading: true
+    })),
+    on(AccountActions.forgotPasswordSuccess, (state) => ({
+        ...state,
+        loading: false,
+        forgotPasswordState: {
+            ...state.forgotPasswordState,
+            isEmailExist: true
+        }
+    })),
+    on(AccountActions.forgotPasswordFailure, (state, { serverError }) => {
+        return ({
+            ...state,
+            loading: false,
+            serverError: serverError,
+            forgotPasswordState: {
+                ...state.forgotPasswordState,
+                isEmailExist: false
+            }
+        })
+    }),
 );
 
 export function accountReducer(state: AppState | undefined, action: Action) {

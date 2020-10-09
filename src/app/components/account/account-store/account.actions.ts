@@ -13,6 +13,9 @@ export enum AccountActions {
     SignUp = '[Account] SignUp',
     SignUpSuccess = '[Account] SignUp Success',
     SignUpFailure = '[Account] SignUp Failure',
+    ForgotPassword = '[Account] ForgotPassword',
+    ForgotPasswordSuccess = '[Account] ForgotPassword Success',
+    ForgotPasswordFailure = '[Account] ForgotPassword Failure',
 }
 
 // SignIn block
@@ -58,5 +61,21 @@ export const signUpSuccess = createAction(
 
 export const signUpFailure = createAction(
     AccountActions.SignUpFailure,
+    props<{ serverError: string[] }>()
+);
+
+// ForgotPassword block
+export const forgotPassword = createAction(
+    AccountActions.ForgotPassword,
+    props<{ payload: string }>()
+);
+
+export const forgotPasswordSuccess = createAction(
+    AccountActions.ForgotPasswordSuccess,
+    props<{ payload: string }>()
+);
+
+export const forgotPasswordFailure = createAction(
+    AccountActions.ForgotPasswordFailure,
     props<{ serverError: string[] }>()
 );

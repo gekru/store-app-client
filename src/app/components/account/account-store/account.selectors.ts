@@ -36,6 +36,10 @@ export const isSignedUp = createSelector(
     state => state.signUpState.isSignedUp
 );
 
+export const isEmailExist = createSelector(
+    getFeature,
+    state => state.forgotPasswordState.isEmailExist
+);
 // export const getFirstName = createSelector(
 //     getFeature,
 //     state => state.signUpState.signUpModel.firstName

@@ -10,6 +10,10 @@
       <mat-error *ngIf="formGroup.invalid">{{ getEmailErrorMessage() }}</mat-error>
     </mat-form-field>
 
+    <div class="forgot-password">
+      <a href="forgot-password">Forgot your password?</a>
+    </div>
+
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
       <input matInput formControlName="password" [type]="showPassword ? 'password' : 'text'" autocomplete="off">
@@ -27,8 +31,8 @@
   <div class="sign-up-block">
     <div>New to Book Publishing Company?</div>
     <div>
-      <button mat-raised-button (click)="navigateToSignUp()" 
-      class="square-button grey-button sign-up-button">Sign-Up</button>
+      <button mat-raised-button (click)="navigateToSignUp()"
+        class="square-button grey-button sign-up-button">Sign-Up</button>
     </div>
   </div>
 </mat-card>

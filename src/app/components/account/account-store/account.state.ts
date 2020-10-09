@@ -17,3 +17,13 @@ export const initialSignUpState: SignUpState = {
     isSignedUp: false,
     signUpModel: null
 };
+
+export interface ForgotPasswordState {
+    email: string;
+    isEmailExist: boolean;
+};
+
+export const initialForgotPasswordState: ForgotPasswordState = {
+    email: null,
+    isEmailExist: false,
+};

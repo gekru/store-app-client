@@ -10,12 +10,16 @@ import { SignInComponent } from 'src/app/components/account/sign-in/sign-in.comp
 import { SignUpComponent } from 'src/app/components/account/sign-up/sign-up.component';
 import { RouterModule } from '@angular/router';
 import { EmailConfirmationComponent } from 'src/app/components/account/email-confirmation/email-confirmation.component';
+import { ForgotPasswordComponent } from 'src/app/components/account/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from 'src/app/components/account/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
     SignInComponent,
     SignUpComponent,
-    EmailConfirmationComponent
+    EmailConfirmationComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,

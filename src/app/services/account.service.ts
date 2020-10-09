@@ -9,6 +9,7 @@ enum ApiAuthRoutes {
   SignIn = 'api/account/login',
   SignOut = 'api/account/logout',
   SignUp = 'api/account/registeruser',
+  ForgotPassword = 'api/account/forgotpassword'
 }
 
 @Injectable({
@@ -34,6 +35,10 @@ export class AccountService {
 
   signUp(signUpModel: SignUpModel) {
     return this.http.post(this.myApiUrl + ApiAuthRoutes.SignUp, signUpModel);
+  }
+
+  forgotPassword(email: string){
+    return this.http.post(this.myApiUrl + ApiAuthRoutes.ForgotPassword, email);
   }
 }
 
