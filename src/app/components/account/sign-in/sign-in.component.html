@@ -7,7 +7,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" type="email">
-      <mat-error *ngIf="formGroup.invalid">{{ getEmailErrorMessage() }}</mat-error>
+      <mat-error *ngIf="formGroup.invalid">{{ emailErrorMessage() }}</mat-error>
     </mat-form-field>
 
     <div class="forgot-password">
@@ -20,7 +20,7 @@
       <span role="button" mat-icon-button matSuffix (click)="showPassword = !showPassword">
         <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </span>
-      <mat-error *ngIf="formGroup.invalid">{{ getPasswordErrorMessage() }}</mat-error>
+      <mat-error *ngIf="formGroup.invalid">{{ passwordErrorMessage() }}</mat-error>
     </mat-form-field>
 
     <div class="sign-in-button">

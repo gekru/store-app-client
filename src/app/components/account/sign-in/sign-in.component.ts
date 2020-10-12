@@ -6,7 +6,9 @@ import { select, Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 import { AppRoutes } from 'src/app/app-routing.module';
+import { ConstantNames } from 'src/app/constants/constant-names';
 import { SignInModel } from 'src/app/models/sign-in.model';
+import { getEmailErrorMessage, getPasswordErrorMessage } from '../../shared/functions/form-group-error-messages';
 import { signIn } from '../account-store/account.actions';
 import { getLoading, getServerError, isLoggedIn } from '../account-store/account.selectors';
 
@@ -41,11 +43,11 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      email: new FormControl('', [
+      [ConstantNames.email]: new FormControl(undefined, [
         Validators.required,
         Validators.email]),
 
-      password: new FormControl('', [
+      [ConstantNames.password]: new FormControl(undefined, [
         Validators.required,
         Validators.minLength(6)])
     });
@@ -58,30 +60,12 @@ export class SignInComponent implements OnInit {
     this.store$.dispatch(signIn({ signInModel }));
   }
 
-  getEmailErrorMessage() {
-
-    let emailField = this.formGroup.get('email');
-
-    if (emailField.hasError('required')) {
-      return 'Please enter an email address';
-    }
-
-    if (emailField.hasError('email')) {
-      return 'Not a valid email';
-    }
+  emailErrorMessage(): string {
+    return getEmailErrorMessage(this.formGroup);
   }
 
-  getPasswordErrorMessage() {
-
-    let passwordField = this.formGroup.get('password');
-
-    if (passwordField.hasError('required')) {
-      return 'Please enter a password';
-    }
-
-    if (passwordField.hasError('minlength')) {
-      return 'The password you provided must have at least 6 characters';
-    }
+  passwordErrorMessage(): string {
+    return getPasswordErrorMessage(this.formGroup);
   }
 
   navigateToSignUp() {
@@ -96,12 +80,12 @@ export class SignInComponent implements OnInit {
   onAdminData() {
 
     if (!this.inputAdminData) {
-      this.formGroup.get('email').patchValue('adminmail@mail.com');
-      this.formGroup.get('password').patchValue('AdminPsw1!');
+      this.formGroup.get(ConstantNames.email).patchValue('adminmail@mail.com');
+      this.formGroup.get(ConstantNames.password).patchValue('AdminPsw1!');
     }
     else {
-      this.formGroup.get('email').patchValue('');
-      this.formGroup.get('password').patchValue('');
+      this.formGroup.get(ConstantNames.email).patchValue(undefined);
+      this.formGroup.get(ConstantNames.password).patchValue(undefined);
     }
 
     this.inputAdminData = !this.inputAdminData;

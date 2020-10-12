@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { ConstantNames } from 'src/app/constants/constant-names';
+import { getEmailErrorMessage } from '../../shared/functions/form-group-error-messages';
 import { forgotPassword } from '../account-store/account.actions';
 import { getServerError, isEmailExist } from '../account-store/account.selectors';
 
@@ -22,7 +24,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      email: new FormControl('', [
+      [ConstantNames.email]: new FormControl(undefined, [
         Validators.required,
         Validators.email])
     });
@@ -41,17 +43,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.store$.dispatch(forgotPassword({ payload: email }));
   }
 
-  getEmailErrorMessage() {
-
-    let emailField = this.formGroup.get('email');
-
-    if (emailField.hasError('required')) {
-      return 'Please enter an email address';
-    }
-
-    if (emailField.hasError('email')) {
-      return 'Not a valid email';
-    }
+  emailErrorMessage() {
+    return getEmailErrorMessage(this.formGroup);
   }
-
 }

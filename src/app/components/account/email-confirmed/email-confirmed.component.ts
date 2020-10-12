@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppRoutes } from 'src/app/app-routing.module';
+import { ConstantNames } from 'src/app/constants/constant-names';
 
 @Component({
   selector: 'app-email-confirmed',
@@ -16,8 +17,8 @@ export class EmailConfirmedComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.subscribe(queryParams => {
-      this.firstName = queryParams.get('firstName');
-      this.lastName = queryParams.get('lastName');
+      this.firstName = queryParams.get(ConstantNames.firstName);
+      this.lastName = queryParams.get(ConstantNames.lastName);
     });
   }
 

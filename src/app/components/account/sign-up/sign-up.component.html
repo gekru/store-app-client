@@ -24,7 +24,7 @@
     <mat-form-field appearance="outline">
       <mat-label>E-mail</mat-label>
       <input matInput formControlName="email" type="email">
-      <mat-error *ngIf="formGroup.invalid">{{ getEmailErrorMessage() }}</mat-error>
+      <mat-error *ngIf="formGroup.invalid">{{ emailErrorMessage() }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -33,7 +33,7 @@
       <span role="button" mat-icon-button matSuffix (click)="showPassword = !showPassword">
         <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </span>
-      <mat-error *ngIf="formGroup.invalid">{{ getPasswordErrorMessage() }}</mat-error>
+      <mat-error *ngIf="formGroup.invalid">{{ passwordErrorMessage() }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -43,16 +43,14 @@
       <span role="button" mat-icon-button matSuffix (click)="showConfirmPassword = !showConfirmPassword">
         <mat-icon>{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </span>
-      <mat-error *ngIf="formGroup.invalid">
-        {{getConfirmPasswordErrorMessage()}}
-      </mat-error>
+      <mat-error *ngIf="formGroup.invalid">{{confirmPasswordErrorMessage()}}</mat-error>
     </mat-form-field>
 
     <div class="button">
       <button class="square-button green-button" mat-raised-button>Sign Up your account</button>
     </div>
   </form>
-  
+
   <div class="sign-in-container">
     <p>Already have an account? <a routerLink="/sign-in">Sign-In</a></p>
   </div>

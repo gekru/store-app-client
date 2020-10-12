@@ -3,7 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { AppRoutes } from 'src/app/app-routing.module';
+import { ConstantNames } from 'src/app/constants/constant-names';
 import { SignUpModel } from 'src/app/models/sign-up.model';
+import { getConfirmPasswordErrorMessage, getEmailErrorMessage, getPasswordErrorMessage } from '../../shared/functions/form-group-error-messages';
 import { signUp } from '../account-store/account.actions';
 import { isSignedUp } from '../account-store/account.selectors';
 
@@ -49,25 +51,25 @@ export class SignUpComponent implements OnInit {
 
   registerForm() {
     this.formGroup = new FormGroup({
-      firstName: new FormControl('', [
+      [ConstantNames.firstName]: new FormControl(undefined, [
         Validators.required,
       ]),
 
-      lastName: new FormControl('', [
+      [ConstantNames.lastName]: new FormControl(undefined, [
         Validators.required,
       ]),
 
-      email: new FormControl('', [
+      [ConstantNames.email]: new FormControl(undefined, [
         Validators.required,
         Validators.email
       ]),
 
-      password: new FormControl('', [
+      [ConstantNames.password]: new FormControl(undefined, [
         Validators.required,
         Validators.minLength(6)
       ]),
 
-      confirmPassword: new FormControl('', {
+      [ConstantNames.confirmPassword]: new FormControl(undefined, {
         validators: [Validators.required],
         updateOn: 'blur'
       }),
@@ -77,43 +79,16 @@ export class SignUpComponent implements OnInit {
   }
 
 
-  getEmailErrorMessage() {
-
-    let emailField = this.formGroup.get('email');
-
-    if (emailField.hasError('required')) {
-      return 'Please enter an email address';
-    }
-
-    if (emailField.hasError('email')) {
-      return 'Not a valid email';
-    }
+  emailErrorMessage(): string {
+    return getEmailErrorMessage(this.formGroup);
   }
 
-  getPasswordErrorMessage() {
-
-    let passwordField = this.formGroup.get('password');
-
-    if (passwordField.hasError('required')) {
-      return 'Please enter a password';
-    }
-
-    if (passwordField.hasError('minlength')) {
-      return 'The password you provided must have at least 6 characters';
-    }
+  passwordErrorMessage(): string {
+    return getPasswordErrorMessage(this.formGroup);
   }
 
-  getConfirmPasswordErrorMessage() {
-
-    let confirnPasswordField = this.formGroup.get('confirmPassword');
-
-    if (confirnPasswordField.hasError('required')) {
-      return 'Please confirm Your password';
-    }
-
-    if (confirnPasswordField.hasError('notMatch')) {
-      return 'Passwords must match';
-    }
+  confirmPasswordErrorMessage(): string {
+    return getConfirmPasswordErrorMessage(this.formGroup);
   }
 
   // TODO: Fix method to navigate from html
@@ -128,18 +103,18 @@ export class SignUpComponent implements OnInit {
   onAccountData() {
 
     if (!this.inputAccountData) {
-      this.formGroup.get('firstName').patchValue('FirstName');
-      this.formGroup.get('lastName').patchValue('LastName');
-      this.formGroup.get('email').patchValue('anuitex@mailinator.com');
-      this.formGroup.get('password').patchValue('Password1!');
-      this.formGroup.get('confirmPassword').patchValue('Password1!');
+      this.formGroup.get(ConstantNames.firstName).patchValue('FirstName');
+      this.formGroup.get(ConstantNames.lastName).patchValue('LastName');
+      this.formGroup.get(ConstantNames.email).patchValue('anuitex@mailinator.com');
+      this.formGroup.get(ConstantNames.password).patchValue('Password1!');
+      this.formGroup.get(ConstantNames.confirmPassword).patchValue('Password1!');
     }
     else {
-      this.formGroup.get('firstName').patchValue(undefined);
-      this.formGroup.get('lastName').patchValue(undefined);
-      this.formGroup.get('email').patchValue(undefined);
-      this.formGroup.get('password').patchValue(undefined);
-      this.formGroup.get('confirmPassword').patchValue(undefined);
+      this.formGroup.get(ConstantNames.firstName).patchValue(undefined);
+      this.formGroup.get(ConstantNames.lastName).patchValue(undefined);
+      this.formGroup.get(ConstantNames.email).patchValue(undefined);
+      this.formGroup.get(ConstantNames.password).patchValue(undefined);
+      this.formGroup.get(ConstantNames.confirmPassword).patchValue(undefined);
     }
 
     this.inputAccountData = !this.inputAccountData;
