@@ -12,12 +12,14 @@ import { RouterModule } from '@angular/router';
 import { EmailConfirmationComponent } from 'src/app/components/account/email-confirmation/email-confirmation.component';
 import { ForgotPasswordComponent } from 'src/app/components/account/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from 'src/app/components/account/reset-password/reset-password.component';
+import { EmailConfirmedComponent } from 'src/app/components/account/email-confirmed/email-confirmed.component';
 
 @NgModule({
   declarations: [
     SignInComponent,
     SignUpComponent,
     EmailConfirmationComponent,
+    EmailConfirmedComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent
   ],

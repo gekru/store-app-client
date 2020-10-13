@@ -31,7 +31,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   }
 
-  navigateToResetPassword() {
+  navigateToHome() {
     return this.router.navigate([''])
   }
 

@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { JwtTokenModel } from 'src/app/models/jwt-token.model';
+import { ResetPasswordModel } from 'src/app/models/reset-password';
 import { SignInModel } from 'src/app/models/sign-in.model';
 import { SignUpModel } from 'src/app/models/sign-up.model';
 
@@ -16,6 +17,9 @@ export enum AccountActions {
     ForgotPassword = '[Account] ForgotPassword',
     ForgotPasswordSuccess = '[Account] ForgotPassword Success',
     ForgotPasswordFailure = '[Account] ForgotPassword Failure',
+    ResestPassword = '[Account] ResestPassword',
+    ResestPasswordSuccess = '[Account] ResestPassword Success',
+    ResestPasswordFailure = '[Account] ResestPassword Failure',
 }
 
 // SignIn block
@@ -77,5 +81,21 @@ export const forgotPasswordSuccess = createAction(
 
 export const forgotPasswordFailure = createAction(
     AccountActions.ForgotPasswordFailure,
+    props<{ serverError: string[] }>()
+);
+
+// ResetPassword block
+export const resetPassword = createAction(
+    AccountActions.ResestPassword,
+    props<{ resetPasswordModel: ResetPasswordModel }>()
+);
+
+export const resetPasswordSuccess = createAction(
+    AccountActions.ResestPasswordSuccess,
+    props<{ resetPasswordModel: ResetPasswordModel }>()
+);
+
+export const resetPasswordFailure = createAction(
+    AccountActions.ResestPasswordFailure,
     props<{ serverError: string[] }>()
 );

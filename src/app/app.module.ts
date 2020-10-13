@@ -15,7 +15,6 @@ import { AccountModule } from './modules/account/account.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
-import { EmailConfirmedComponent } from './components/account/email-confirmed/email-confirmed.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { EmailConfirmedComponent } from './components/account/email-confirmed/em
     HeaderComponent,
     FooterComponent,
     SpinnerComponent,
-    EmailConfirmedComponent,
   ],
   imports: [
     BrowserModule,

@@ -40,11 +40,11 @@ export class SignUpComponent implements OnInit {
   }
 
   checkPasswords(group: FormGroup) {
-    let password = group.get('password');
-    let confirmPassword = group.get('confirmPassword');
+    let password = group.get(ConstantNames.password);
+    let confirmPassword = group.get(ConstantNames.confirmPassword);
 
-    if (!confirmPassword.hasError('required') && password.value !== confirmPassword.value) {
-      group.get('confirmPassword').setErrors({ notMatch: true });
+    if (!confirmPassword.hasError(ConstantNames.required) && password.value !== confirmPassword.value) {
+      group.get(ConstantNames.confirmPassword).setErrors({ notMatch: true });
     }
     return undefined;
   }

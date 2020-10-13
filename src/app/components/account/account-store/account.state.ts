@@ -1,4 +1,5 @@
 import { JwtTokenModel } from 'src/app/models/jwt-token.model';
+import { ResetPasswordModel } from 'src/app/models/reset-password';
 import { SignUpModel } from 'src/app/models/sign-up.model';
 
 export interface SignInState {
@@ -26,4 +27,14 @@ export interface ForgotPasswordState {
 export const initialForgotPasswordState: ForgotPasswordState = {
     email: null,
     isEmailExist: false,
+};
+
+export interface ResetPasswordState {
+    isPasswordRecovered: boolean;
+    resetPasswordModel: ResetPasswordModel;
+};
+
+export const initialResetPasswordState: ResetPasswordState = {
+    isPasswordRecovered: false,
+    resetPasswordModel: null,
 };

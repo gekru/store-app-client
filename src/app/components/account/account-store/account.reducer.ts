@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { Action, createReducer, on } from '@ngrx/store';
 import { AppState, initialAppState } from 'src/app/store/state/app.state';
 import * as AccountActions from './account.actions';
@@ -92,6 +93,30 @@ const createAccauntReducer = createReducer(
             forgotPasswordState: {
                 ...state.forgotPasswordState,
                 isEmailExist: false
+            }
+        })
+    }),
+    // ResetPassword block
+    on(AccountActions.resetPassword, state => ({
+        ...state,
+        loading: true
+    })),
+    on(AccountActions.resetPasswordSuccess, state => ({
+        ...state,
+        loading: false,
+        resetPasswordState: {
+            ...state.resetPasswordState,
+            isPasswordRecovered: true
+        }
+        })),
+    on(AccountActions.resetPasswordFailure, (state, { serverError }) => {
+        return ({
+            ...state,
+            loading: false,
+            serverError: serverError,
+            resetPasswordState: {
+                ...state.resetPasswordState,
+                isPasswordRecovered: false
             }
         })
     }),

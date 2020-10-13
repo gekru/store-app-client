@@ -7,6 +7,7 @@ export interface AppState {
     signInState: AccountState.SignInState;
     signUpState: AccountState.SignUpState;
     forgotPasswordState: AccountState.ForgotPasswordState;
+    resetPasswordState: AccountState.ResetPasswordState;
 };
 
 export const initialAppState: AppState = {
@@ -16,4 +17,5 @@ export const initialAppState: AppState = {
     signInState: AccountState.initialSignInState,
     signUpState: AccountState.initialSignUpState,
     forgotPasswordState: AccountState.initialForgotPasswordState,
+    resetPasswordState: AccountState.initialResetPasswordState,
 };

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { JwtTokenModel } from '../models/jwt-token.model';
+import { ResetPasswordModel } from '../models/reset-password';
 import { SignInModel } from '../models/sign-in.model';
 import { SignUpModel } from '../models/sign-up.model';
 
@@ -9,7 +10,8 @@ enum ApiAuthRoutes {
   SignIn = 'api/account/login',
   SignOut = 'api/account/logout',
   SignUp = 'api/account/registeruser',
-  ForgotPassword = 'api/account/forgotpassword'
+  ForgotPassword = 'api/account/forgotpassword',
+  ResetPassword = 'api/account/resetpassword'
 }
 
 @Injectable({
@@ -37,8 +39,12 @@ export class AccountService {
     return this.http.post(this.myApiUrl + ApiAuthRoutes.SignUp, signUpModel);
   }
 
-  forgotPassword(email: string){
+  forgotPassword(email: string) {
     return this.http.post(this.myApiUrl + ApiAuthRoutes.ForgotPassword, email);
+  }
+
+  resetPassword(resetPasswordModel: ResetPasswordModel) {
+    return this.http.post(this.myApiUrl + ApiAuthRoutes.ResetPassword, resetPasswordModel);
   }
 }
 

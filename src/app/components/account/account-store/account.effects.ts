@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AccountService } from 'src/app/services/account.service';
-import { signIn, signInFailure, AccountActions, signOut, signOutFailure, signUp, signUpFailure, forgotPassword, forgotPasswordFailure } from './account.actions';
+import { signIn, signInFailure, AccountActions, signOut, signOutFailure, signUp, signUpFailure, forgotPassword, forgotPasswordFailure, resetPassword, resetPasswordFailure } from './account.actions';
 import { catchError, map, switchMap } from 'rxjs/operators'
 import { of } from 'rxjs';
 import { JwtTokenModel } from 'src/app/models/jwt-token.model';
 import { SignUpModel } from 'src/app/models/sign-up.model';
+import { ResetPasswordModel } from 'src/app/models/reset-password';
 
 @Injectable()
 export class AccountEffects {
@@ -84,6 +85,27 @@ export class AccountEffects {
                     error => {
                         debugger
                         return of(forgotPasswordFailure({
+                            serverError: [error.message, error.error]
+                        }))
+                    }
+                )
+            ))
+    ));
+
+    resetPassword$ = createEffect(() => this.actions$.pipe(
+        ofType(resetPassword),
+        switchMap(action =>
+            this.accountService.resetPassword(
+                action.resetPasswordModel
+            ).pipe(
+                map((resetPasswordModel: ResetPasswordModel) => ({
+                    type: AccountActions.ResestPasswordSuccess,
+                    resetPasswordModel: resetPasswordModel,
+                })),
+                catchError(
+                    error => {
+                        debugger
+                        return of(resetPasswordFailure({
                             serverError: [error.message, error.error]
                         }))
                     }
