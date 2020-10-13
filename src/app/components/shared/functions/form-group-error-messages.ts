@@ -25,6 +25,25 @@ export function getPasswordErrorMessage(formGroup: FormGroup) {
     if (passwordField.hasError('minlength')) {
         return 'The password you provided must have at least 6 characters';
     }
+
+    if (passwordField.hasError('pattern')) {
+        if(!passwordField.value.match(/[0-9]/)){
+            return "Passwords must have at least one digit ('0'-'9').";
+        }
+
+        if(!passwordField.value.match(/[a-z]/)){
+            return "Passwords must have at least one lowercase ('a'-'z').";
+        }
+
+        if(!passwordField.value.match(/[A-Z]/)){
+            return "Passwords must have at least one uppercase ('A'-'Z').";
+        }
+
+        if(!passwordField.value.match(/[^\w]/)){
+            return "Passwords must have at least one non alphanumeric character.";
+        }
+    }
+
 };
 
 export function getConfirmPasswordErrorMessage(formGroup: FormGroup) {

@@ -52,7 +52,8 @@ export class ResetPasswordComponent implements OnInit {
 
       [ConstantNames.password]: new FormControl(undefined, [
         Validators.required,
-        Validators.minLength(6)
+        Validators.minLength(6),
+        Validators.pattern(ConstantNames.passwordRegExp) 
       ]),
 
       [ConstantNames.confirmPassword]: new FormControl(undefined, {
@@ -66,7 +67,6 @@ export class ResetPasswordComponent implements OnInit {
     this.formGroup.get(ConstantNames.email).setValue(this.email);
     this.formGroup.get(ConstantNames.token).setValue(this.token);
   }
-
 
   passwordErrorMessage(): string {
     return getPasswordErrorMessage(this.formGroup);

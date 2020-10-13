@@ -54,20 +54,21 @@ export class SignUpComponent implements OnInit {
         Validators.email
       ]),
 
-      [ConstantNames.password]: new FormControl(undefined, [
+      [ConstantNames.password]: new FormControl(undefined, {
+        validators: [
         Validators.required,
-        Validators.minLength(6)
-      ]),
-
+        Validators.minLength(6),
+        Validators.pattern(ConstantNames.passwordRegExp) 
+      ]}),
+      
       [ConstantNames.confirmPassword]: new FormControl(undefined, {
         validators: [Validators.required],
-        updateOn: 'blur'
+        updateOn: 'blur',
       }),
     }, {
       validators: [checkPasswords]
     });
   }
-
 
   emailErrorMessage(): string {
     return getEmailErrorMessage(this.formGroup);
