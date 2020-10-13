@@ -5,7 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { AppRoutes } from 'src/app/app-routing.module';
 import { ConstantNames } from 'src/app/constants/constant-names';
 import { SignUpModel } from 'src/app/models/sign-up.model';
-import { getConfirmPasswordErrorMessage, getEmailErrorMessage, getPasswordErrorMessage } from '../../shared/functions/form-group-error-messages';
+import { checkPasswords, getConfirmPasswordErrorMessage, getEmailErrorMessage, getPasswordErrorMessage } from '../../shared/functions/form-group-error-messages';
 import { signUp } from '../account-store/account.actions';
 import { isSignedUp } from '../account-store/account.selectors';
 
@@ -39,16 +39,6 @@ export class SignUpComponent implements OnInit {
     this.store$.dispatch(signUp({ signUpModel }));
   }
 
-  checkPasswords(group: FormGroup) {
-    let password = group.get(ConstantNames.password);
-    let confirmPassword = group.get(ConstantNames.confirmPassword);
-
-    if (!confirmPassword.hasError(ConstantNames.required) && password.value !== confirmPassword.value) {
-      group.get(ConstantNames.confirmPassword).setErrors({ notMatch: true });
-    }
-    return undefined;
-  }
-
   registerForm() {
     this.formGroup = new FormGroup({
       [ConstantNames.firstName]: new FormControl(undefined, [
@@ -74,7 +64,7 @@ export class SignUpComponent implements OnInit {
         updateOn: 'blur'
       }),
     }, {
-      validators: [this.checkPasswords]
+      validators: [checkPasswords]
     });
   }
 

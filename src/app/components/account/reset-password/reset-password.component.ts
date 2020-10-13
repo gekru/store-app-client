@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { AppRoutes } from 'src/app/app-routing.module';
 import { ConstantNames } from 'src/app/constants/constant-names';
 import { ResetPasswordModel } from 'src/app/models/reset-password';
-import { getConfirmPasswordErrorMessage, getPasswordErrorMessage } from '../../shared/functions/form-group-error-messages';
+import { checkPasswords, getConfirmPasswordErrorMessage, getPasswordErrorMessage } from '../../shared/functions/form-group-error-messages';
 import { resetPassword } from '../account-store/account.actions';
 import { getServerError, isPasswordRecovered } from '../account-store/account.selectors';
 
@@ -25,16 +25,6 @@ export class ResetPasswordComponent implements OnInit {
 
   isPasswordRecovered$: Observable<boolean> = this.store$.pipe(select(isPasswordRecovered));
   errors$: Observable<String[]> = this.store$.pipe(select(getServerError));
-
-  checkPasswords(group: FormGroup) {
-    let password = group.get(ConstantNames.password);
-    let confirmPassword = group.get(ConstantNames.confirmPassword);
-
-    if (!confirmPassword.hasError(ConstantNames.required) && password.value !== confirmPassword.value) {
-      group.get(ConstantNames.confirmPassword).setErrors({ notMatch: true });
-    }
-    return undefined;
-  }
 
   constructor(private store$: Store, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -70,7 +60,7 @@ export class ResetPasswordComponent implements OnInit {
         updateOn: 'blur'
       }),
     }, {
-      validators: [this.checkPasswords]
+      validators: [checkPasswords]
     });
 
     this.formGroup.get(ConstantNames.email).setValue(this.email);

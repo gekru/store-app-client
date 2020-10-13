@@ -39,3 +39,13 @@ export function getConfirmPasswordErrorMessage(formGroup: FormGroup) {
         return 'Passwords must match';
     }
 };
+
+export function checkPasswords(group: FormGroup) {
+    let password = group.get(ConstantNames.password);
+    let confirmPassword = group.get(ConstantNames.confirmPassword);
+
+    if (!confirmPassword.hasError(ConstantNames.required) && password.value !== confirmPassword.value) {
+        group.get(ConstantNames.confirmPassword).setErrors({ notMatch: true });
+    }
+    return undefined;
+  }
