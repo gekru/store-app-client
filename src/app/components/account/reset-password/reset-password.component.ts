@@ -24,7 +24,7 @@ export class ResetPasswordComponent implements OnInit {
   token: string = undefined;
 
   isPasswordRecovered$: Observable<boolean> = this.store$.pipe(select(isPasswordRecovered));
-  errors$: Observable<String[]> = this.store$.pipe(select(getServerError));
+  errors$: Observable<Error> = this.store$.pipe(select(getServerError));
 
   constructor(private store$: Store, private activatedRoute: ActivatedRoute, private router: Router) { }
 

@@ -24,7 +24,7 @@ export class SignInComponent implements OnInit {
   formGroup: FormGroup;
 
   loading$: Observable<boolean> = this.store$.pipe(select(getLoading));
-  serverError$: Observable<String[]> = this.store$.pipe(select(getServerError));
+  serverError$: Observable<Error> = this.store$.pipe(select(getServerError));
 
   public isLoggedIn$ = this.store$.pipe(select(isLoggedIn)).subscribe(isLoggedIn => {
     if (isLoggedIn) {

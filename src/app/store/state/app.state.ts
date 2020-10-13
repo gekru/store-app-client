@@ -2,7 +2,7 @@ import * as AccountState from 'src/app/components/account/account-store/account.
 
 export interface AppState {
     loading: boolean;
-    serverError: string[];
+    serverError: Error;
     isLoggedIn: boolean;
     signInState: AccountState.SignInState;
     signUpState: AccountState.SignUpState;

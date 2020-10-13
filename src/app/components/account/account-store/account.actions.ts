@@ -35,7 +35,7 @@ export const signInSuccess = createAction(
 
 export const signInFailure = createAction(
     AccountActions.SignInFailure,
-    props<{ serverError: string[] }>()
+    props<{ serverError: Error }>()
 );
 
 // SignOut block
@@ -49,7 +49,7 @@ export const signOutSuccess = createAction(
 
 export const signOutFailure = createAction(
     AccountActions.SignOutFailure,
-    props<{ serverError: string[] }>()
+    props<{ serverError: Error }>()
 );
 
 // SignUp block
@@ -65,7 +65,7 @@ export const signUpSuccess = createAction(
 
 export const signUpFailure = createAction(
     AccountActions.SignUpFailure,
-    props<{ serverError: string[] }>()
+    props<{ serverError: Error }>()
 );
 
 // ForgotPassword block
@@ -81,7 +81,7 @@ export const forgotPasswordSuccess = createAction(
 
 export const forgotPasswordFailure = createAction(
     AccountActions.ForgotPasswordFailure,
-    props<{ serverError: string[] }>()
+    props<{ serverError: Error }>()
 );
 
 // ResetPassword block
@@ -97,5 +97,5 @@ export const resetPasswordSuccess = createAction(
 
 export const resetPasswordFailure = createAction(
     AccountActions.ResestPasswordFailure,
-    props<{ serverError: string[] }>()
+    props<{ serverError: Error }>()
 );

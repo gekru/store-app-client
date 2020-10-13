@@ -25,7 +25,7 @@ export class AccountEffects {
                     error => {
                         debugger
                         return of(signInFailure({
-                            serverError: [error.message, error.error]
+                            serverError: error
                         }))
                     }
                 )
@@ -43,7 +43,7 @@ export class AccountEffects {
                     error => {
                         debugger;
                         return of(signOutFailure({
-                            serverError: [error.message, error.error]
+                            serverError: error
                         }))
                     }
                 )
@@ -64,7 +64,7 @@ export class AccountEffects {
                     error => {
                         debugger
                         return of(signUpFailure({
-                            serverError: [error.message, error.error]
+                            serverError: error
                         }))
                     }
                 )
@@ -85,7 +85,7 @@ export class AccountEffects {
                     error => {
                         debugger
                         return of(forgotPasswordFailure({
-                            serverError: [error.message, error.error]
+                            serverError: error
                         }))
                     }
                 )
@@ -106,7 +106,7 @@ export class AccountEffects {
                     error => {
                         debugger
                         return of(resetPasswordFailure({
-                            serverError: [error.message, error.error]
+                            serverError: error
                         }))
                     }
                 )

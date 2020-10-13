@@ -18,7 +18,7 @@ export class ForgotPasswordComponent implements OnInit {
   formGroup: FormGroup;
 
   isEmailExist$ = this.store$.pipe(select(isEmailExist));
-  errors$: Observable<String[]> = this.store$.pipe(select(getServerError));
+  errors$: Observable<Error> = this.store$.pipe(select(getServerError));
 
   constructor(private store$: Store, private router: Router) { }
 
