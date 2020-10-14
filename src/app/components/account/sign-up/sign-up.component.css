@@ -16,7 +16,6 @@
     min-width: 200px;
   }
 
-
 mat-card-title,
 mat-card-content {
   display: flex;
@@ -53,6 +52,28 @@ form {
 
 .sign-in-container{
   padding-top: 20px;
+}
+
+.error-block {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.error-wrapper {
+  border: darkred solid 5px;
+  width: 90%;
+}
+
+.error-wrapper mat-card-subtitle {
+  text-align: justify;
+}
+
+.error-icon {
+color: darkred;
+display: flex;
+font-size: 70px;
+width: 70px;
 }
 /* .square-green-button {
   background-color: green;

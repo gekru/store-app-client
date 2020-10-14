@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { AppRoutes } from 'src/app/app-routing.module';
 import { ConstantNames } from 'src/app/constants/constant-names';
 import { SignUpModel } from 'src/app/models/sign-up.model';
 import { checkPasswords, getConfirmPasswordErrorMessage, getEmailErrorMessage, getPasswordErrorMessage } from '../../shared/functions/form-group-error-messages';
 import { signUp } from '../account-store/account.actions';
-import { isSignedUp } from '../account-store/account.selectors';
+import { getServerError, isSignedUp } from '../account-store/account.selectors';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,6 +21,9 @@ export class SignUpComponent implements OnInit {
   showConfirmPassword = true;
   formGroup: FormGroup;
 
+  signUpSuccess$ = this.store$.pipe(select(isSignedUp));
+  errors$: Observable<Error> = this.store$.pipe(select(getServerError));
+  
   public registerSuccess$ = this.store$.pipe(select(isSignedUp)).subscribe(isSignedUp => {
     if (isSignedUp) {
       this.router.navigate([AppRoutes.EmailConfirmation])

@@ -4,6 +4,21 @@
     margin: 80px 0px;
   }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.grid-item-1 {
+  text-align: left;
+}
+
+.grid-item-2 > mat-card-content {
+  justify-content: flex-end;
+  color: darkred;
+  margin-bottom: 0;
+}
+
 form {
   padding-top: 10px;
 }

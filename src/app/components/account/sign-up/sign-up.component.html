@@ -3,6 +3,22 @@
     <i class="material-icons logo" (click)="onAccountData()">person</i>
   </div>
   <mat-card-title>Create account</mat-card-title>
+
+  <div *ngIf="!(signUpSuccess$ | async) && ((errors$ | async)?.error.length > 0)" class="error-block">
+    <mat-card-header class="error-wrapper">
+      <div mat-card-avatar class="error-icon">
+        <div>
+          <i class="material-icons error-icon">priority_high</i>
+        </div>
+      </div>
+      <mat-card-title>There was a problem</mat-card-title>
+      <mat-card-subtitle>Register failed:</mat-card-subtitle>
+      <mat-card-subtitle *ngFor="let error of (errors$ | async)?.error">
+        <div>{{error}}</div>
+      </mat-card-subtitle>
+    </mat-card-header>
+  </div>
+
   <form [formGroup]="formGroup" (ngSubmit)="onSignUp(formGroup.value)">
 
     <mat-form-field appearance="outline">

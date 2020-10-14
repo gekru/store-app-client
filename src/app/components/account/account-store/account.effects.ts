@@ -23,7 +23,6 @@ export class AccountEffects {
                 })),
                 catchError(
                     error => {
-                        debugger
                         return of(signInFailure({
                             serverError: error
                         }))

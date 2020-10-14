@@ -19,7 +19,6 @@ const createAccauntReducer = createReducer(
         isLoggedIn: true
     })),
     on(AccountActions.signInFailure, (state, { serverError }) => {
-        debugger
         return ({
             ...state,
             loading: false,

@@ -10,7 +10,7 @@ import { ConstantNames } from 'src/app/constants/constant-names';
 import { SignInModel } from 'src/app/models/sign-in.model';
 import { getEmailErrorMessage, getPasswordErrorMessage } from '../../shared/functions/form-group-error-messages';
 import { signIn } from '../account-store/account.actions';
-import { getLoading, getServerError, isLoggedIn } from '../account-store/account.selectors';
+import { getServerError, isLoggedIn } from '../account-store/account.selectors';
 
 @Component({
   selector: 'app-sign-in',
@@ -23,8 +23,8 @@ export class SignInComponent implements OnInit {
   showPassword = true;
   formGroup: FormGroup;
 
-  loading$: Observable<boolean> = this.store$.pipe(select(getLoading));
   serverError$: Observable<Error> = this.store$.pipe(select(getServerError));
+  isSignIn$: Observable<boolean> = this.store$.pipe(select(isLoggedIn));
 
   public isLoggedIn$ = this.store$.pipe(select(isLoggedIn)).subscribe(isLoggedIn => {
     if (isLoggedIn) {

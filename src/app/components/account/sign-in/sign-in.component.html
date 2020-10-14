@@ -2,7 +2,20 @@
   <div class="logo-placement">
     <i class="material-icons logo" (click)="onAdminData()">person</i>
   </div>
-  <mat-card-title>Sign-In</mat-card-title>
+
+  <div class="grid-container">
+      <mat-card-title class="grid-item-1">Sign-In</mat-card-title>
+  
+      <div class="grid-item-2" *ngIf="(serverError$ | async)?.error.status == '401' && !(isSignIn$ | async)">
+        <mat-card-content >
+          <span class="material-icons">cancel</span>
+          <h3>
+            {{(serverError$ | async)?.error.title}}
+          </h3>
+        </mat-card-content>
+      </div>
+  </div>
+
   <form [formGroup]="formGroup" (ngSubmit)="onSignIn(formGroup.value)">
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
