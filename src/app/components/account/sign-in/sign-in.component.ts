@@ -10,7 +10,7 @@ import { ConstantNames } from 'src/app/constants/constant-names';
 import { SignInModel } from 'src/app/models/sign-in.model';
 import { getEmailErrorMessage, getPasswordErrorMessage } from '../../shared/functions/form-group-error-messages';
 import { signIn } from '../account-store/account.actions';
-import { getServerError, isLoggedIn } from '../account-store/account.selectors';
+import { getServerError, getSignInData, isLoggedIn } from '../account-store/account.selectors';
 
 @Component({
   selector: 'app-sign-in',
@@ -20,8 +20,24 @@ import { getServerError, isLoggedIn } from '../account-store/account.selectors';
 
 export class SignInComponent implements OnInit {
 
-  showPassword = true;
+  showPassword: boolean = true;
   formGroup: FormGroup;
+  isRememberMe: boolean = false;
+
+  accessToken: string;
+
+  accessToken$ = this.store$.pipe(select(getSignInData)).subscribe(data => {
+    if (data) {
+      this.accessToken = data.accessToken;
+
+      if (this.isRememberMe) {
+        localStorage.setItem(ConstantNames.accessToken, this.accessToken);
+        return;
+      }
+
+      localStorage.setItem(ConstantNames.accessToken, undefined);
+    }
+  });
 
   serverError$: Observable<Error> = this.store$.pipe(select(getServerError));
   isSignIn$: Observable<boolean> = this.store$.pipe(select(isLoggedIn));
@@ -39,7 +55,8 @@ export class SignInComponent implements OnInit {
     }
   });
 
-  constructor(private store$: Store, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private store$: Store, private router: Router,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -49,8 +66,12 @@ export class SignInComponent implements OnInit {
 
       [ConstantNames.password]: new FormControl(undefined, [
         Validators.required,
-        Validators.minLength(6)])
+        Validators.minLength(6)]),
+
+      [ConstantNames.rememberMe]: new FormControl(),
     });
+
+    this.formGroup.get(ConstantNames.rememberMe).setValue(this.isRememberMe);
   }
 
   onSignIn(signInModel: SignInModel) {

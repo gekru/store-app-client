@@ -1,4 +1,3 @@
-import { state } from '@angular/animations';
 import { Action, createReducer, on } from '@ngrx/store';
 import { AppState, initialAppState } from 'src/app/store/state/app.state';
 import * as AccountActions from './account.actions';
@@ -14,7 +13,10 @@ const createAccauntReducer = createReducer(
     })),
     on(AccountActions.signInSuccess, (state, { signInData }) => ({
         ...state,
-        signInData: signInData,
+        signInState: {
+            ...state.signInState,
+            signInData: signInData,
+        },
         loading: false,
         isLoggedIn: true
     })),
@@ -107,7 +109,7 @@ const createAccauntReducer = createReducer(
             ...state.resetPasswordState,
             isPasswordRecovered: true
         }
-        })),
+    })),
     on(AccountActions.resetPasswordFailure, (state, { serverError }) => {
         return ({
             ...state,

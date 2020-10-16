@@ -19,16 +19,16 @@ export const getSignInData = createSelector(
     state => state.signInState.signInData
 );
 
-// export const getAccessToken = createSelector(
-//     getLoginData,
-//     loginData => loginData && loginData.accessToken
-// );
+export const getAccessToken = createSelector(
+    getSignInData,
+    signInData => signInData && signInData.accessToken
+);
 
 export const isLoggedIn = createSelector(
-    // getAccessToken,
-    // accessToken => !!accessToken
-    getFeature,
-    state => state.isLoggedIn
+    getAccessToken,
+    accessToken => !!accessToken
+    // getFeature,
+    // state => state.isLoggedIn
 );
 
 export const isSignedUp = createSelector(

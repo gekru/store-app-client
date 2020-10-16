@@ -4,18 +4,18 @@
   </div>
 
   <div class="grid-container">
-      <mat-card-title class="grid-item-1">Sign-In</mat-card-title>
-  
-      <div class="grid-item-2" *ngIf="(serverError$ | async)?.error.status == '401' && !(isSignIn$ | async)">
-        <mat-card-content >
-          <span class="material-icons">cancel</span>
-          <h3>
-            {{(serverError$ | async)?.error.title}}
-          </h3>
-        </mat-card-content>
-      </div>
-  </div>
+    <mat-card-title class="grid-item-1">Sign-In</mat-card-title>
 
+    <div class="grid-item-2" *ngIf="(serverError$ | async)?.error.status == '401' && !(isSignIn$ | async)">
+      <mat-card-content>
+        <span class="material-icons">cancel</span>
+        <h3>
+          {{(serverError$ | async)?.error.title}}
+        </h3>
+      </mat-card-content>
+    </div>
+  </div>
+  <!-- <div>access=>{{(accessToken$ | async)?.accessToken}}</div> -->
   <form [formGroup]="formGroup" (ngSubmit)="onSignIn(formGroup.value)">
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
@@ -36,8 +36,12 @@
       <mat-error *ngIf="formGroup.invalid">{{ passwordErrorMessage() }}</mat-error>
     </mat-form-field>
 
-    <div class="sign-in-button">
-      <button class="square-button green-button" mat-raised-button>Sign-In</button>
+    <div class="grid-container">
+      <mat-checkbox formControlName="rememberMe" class="remember-me" (change)="isRememberMe = !isRememberMe">Remember Me
+      </mat-checkbox>
+      <div class="sign-in-button">
+        <button class="square-button green-button" mat-raised-button>Sign-In</button>
+      </div>
     </div>
 
   </form>
