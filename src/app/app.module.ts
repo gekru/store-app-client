@@ -15,6 +15,7 @@ import { AccountModule } from './modules/account/account.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
+import { PrintingEditionModule } from './modules/printing-edition/printing-edition.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PrintingEditionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

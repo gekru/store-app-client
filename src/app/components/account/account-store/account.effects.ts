@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AccountService } from 'src/app/services/account.service';
+import { AccountService } from 'src/app/services/account-service/account.service';
 import { signIn, signInFailure, AccountActions, signOut, signOutFailure, signUp, signUpFailure, forgotPassword, forgotPasswordFailure, resetPassword, resetPasswordFailure } from './account.actions';
 import { catchError, map, switchMap } from 'rxjs/operators'
 import { of } from 'rxjs';

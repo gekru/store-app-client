@@ -9,6 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 const MaterialComponents = [
   MatToolbarModule,
@@ -20,7 +21,8 @@ const MaterialComponents = [
   MatProgressSpinnerModule,
   MatDividerModule,
   MatSnackBarModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  FontAwesomeModule
 ];
 
 @NgModule({

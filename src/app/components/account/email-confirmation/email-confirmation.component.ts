@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-email-confirmation',
@@ -8,7 +7,7 @@ import { select, Store } from '@ngrx/store';
 })
 export class EmailConfirmationComponent implements OnInit {
 
-  constructor(private store$: Store) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

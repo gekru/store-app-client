@@ -1,0 +1,21 @@
+<div class="grid-container">
+    <div *ngFor="let pe of printingEditions" class="grid-item">
+        <div routerLink="/detail/{{pe.id}}" style="cursor: pointer;">
+            <p>
+                <fa-icon [icon]="faBook" size="5x" [styles]="{'color': '#2196F3'}" transform="rotate--5"></fa-icon>
+            </p>
+            <div>
+                ID: {{ pe.id }}
+            </div>
+            <div>
+                Title: {{ pe.title }}
+            </div>
+            <div>
+                Price: ${{ pe.price }}
+            </div>
+            <div>
+                Currency: {{ pe.currency }}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import * as AccountState from 'src/app/components/account/account-store/account.state';
+import { initialPrintingEditionState, PrintingEditionState } from 'src/app/components/printing-edition/printing-edition-store/printing-edition.state';
 
 export interface AppState {
     loading: boolean;
@@ -8,6 +9,7 @@ export interface AppState {
     signUpState: AccountState.SignUpState;
     forgotPasswordState: AccountState.ForgotPasswordState;
     resetPasswordState: AccountState.ResetPasswordState;
+    printingEditionState: PrintingEditionState;
 };
 
 export const initialAppState: AppState = {
@@ -18,4 +20,5 @@ export const initialAppState: AppState = {
     signUpState: AccountState.initialSignUpState,
     forgotPasswordState: AccountState.initialForgotPasswordState,
     resetPasswordState: AccountState.initialResetPasswordState,
+    printingEditionState: initialPrintingEditionState
 };
