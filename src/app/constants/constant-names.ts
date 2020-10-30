@@ -1,4 +1,5 @@
 export class ConstantNames {
+    public static readonly id: string = 'id';
     public static readonly email: string = 'email';
     public static readonly password: string = 'password';
     public static readonly confirmPassword: string = 'confirmPassword';

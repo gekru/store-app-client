@@ -1,0 +1,5 @@
+<p>Catalog</p>
+<div *ngIf="printingEdition$ | async">
+    <h2>{{(printingEdition$ | async)?.title}}</h2>
+    <h3>{{(printingEdition$ | async)?.description}}</h3>
+</div>

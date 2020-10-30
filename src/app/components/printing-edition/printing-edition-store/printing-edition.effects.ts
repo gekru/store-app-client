@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { PrintingEditionModel } from 'src/app/models/printing-edition.model';
 import { PrintingEditionService } from 'src/app/services/printing-edition-service/printing-edition.service';
-import { getAll, getAllFailure, PrintingEditionActions } from './printing-edition.actions';
+import { getAll, getAllFailure, getAllSuccess, getById, getByIdFailure, getByIdSuccess, PrintingEditionActions } from './printing-edition.actions';
 
 @Injectable()
 export class PrintingEditionEffects {
@@ -14,13 +14,30 @@ export class PrintingEditionEffects {
         switchMap(() =>
             this.printingEditionService.getAll()
                 .pipe(
-                    map((printingEditionModel: PrintingEditionModel[]) => ({
-                        type: PrintingEditionActions.GetAllSuccess,
-                        printingEditionData: printingEditionModel,
-                    })),
+                    map((printingEditionModel: PrintingEditionModel[]) =>
+                        getAllSuccess({ printingEditionModel })),
                     catchError(
                         error => {
                             return of(getAllFailure({
+                                serverError: error
+                            }))
+                        }
+                    )
+                ))
+    ));
+
+    getById$ = createEffect(() => this.actions$.pipe(
+        ofType(getById),
+        switchMap((action) =>
+            this.printingEditionService.getById(action.id)
+                .pipe(
+                    map((printingEditionModel: PrintingEditionModel) => getByIdSuccess({
+                        printingEditionModel: printingEditionModel
+                    })),
+                    catchError(
+                        error => {
+                            debugger;
+                            return of(getByIdFailure({
                                 serverError: error
                             }))
                         }

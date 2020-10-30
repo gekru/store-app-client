@@ -6,6 +6,7 @@ import { ForgotPasswordComponent } from './components/account/forgot-password/fo
 import { ResetPasswordComponent } from './components/account/reset-password/reset-password.component';
 import { SignInComponent } from './components/account/sign-in/sign-in.component';
 import { SignUpComponent } from './components/account/sign-up/sign-up.component';
+import { PrintingEditionDetailComponent } from './components/printing-edition/printing-edition-detail/printing-edition-detail.component';
 import { PrintingEditionComponent } from './components/printing-edition/printing-edition/printing-edition.component';
 
 export const enum AppRoutes {
@@ -16,6 +17,7 @@ export const enum AppRoutes {
   ForgotPassword = 'forgot-password',
   ResetPassword = 'reset-password',
   PrintingEditions = 'printing-editions',
+  PrintingEditionDetail = 'printing-editions/detail/:id',
 }
 
 const routes: Routes = [
@@ -27,6 +29,7 @@ const routes: Routes = [
   { path: AppRoutes.ForgotPassword, component: ForgotPasswordComponent },
   { path: AppRoutes.ResetPassword, component: ResetPasswordComponent },
   { path: AppRoutes.PrintingEditions, component: PrintingEditionComponent },
+  { path: AppRoutes.PrintingEditionDetail, component: PrintingEditionDetailComponent },
 ];
 
 @NgModule({

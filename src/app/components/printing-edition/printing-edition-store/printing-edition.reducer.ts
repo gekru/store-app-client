@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { AppState, initialAppState } from 'src/app/store/state/app.state';
-import { getAll, getAllFailure, getAllSuccess } from './printing-edition.actions';
+import { getAll, getAllFailure, getAllSuccess, getById, getByIdFailure, getByIdSuccess } from './printing-edition.actions';
 
 export const PRINTING_EDITION_FEATURE_NAME = 'printingEditionReducer';
 
@@ -27,6 +27,26 @@ const createPrintingEditionReducer = createReducer(
         })
     }),
 
+    // GetById block
+    on(getById, state => ({
+        ...state,
+        loading: true
+    })),
+    on(getByIdSuccess, (state, { printingEditionModel }) => ({
+        ...state,
+        printingEditionState: {
+            ...state.printingEditionState,
+            selectedPrintingEdition: printingEditionModel,
+        },
+        loading: false,
+    })),
+    on(getByIdFailure, (state, { serverError }) => {
+        return ({
+            ...state,
+            loading: false,
+            serverError: serverError
+        })
+    }),
 
 );
 

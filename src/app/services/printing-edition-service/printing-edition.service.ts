@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 
 enum ApiPrintingEditionRoutes {
   GetAll = 'api/printingedition/getall',
+  GetById = 'api/printingedition/getbyid?id=',
 }
 
 @Injectable({
@@ -23,4 +24,9 @@ export class PrintingEditionService {
   getAll(): Observable<PrintingEditionModel[]> {
     return this.http.get<PrintingEditionModel[]>(this.myApiUrl + ApiPrintingEditionRoutes.GetAll);
   }
+
+  getById(id: number): Observable<PrintingEditionModel> {
+    return this.http.get<PrintingEditionModel>(this.myApiUrl + ApiPrintingEditionRoutes.GetById + id)
+  }
+
 }

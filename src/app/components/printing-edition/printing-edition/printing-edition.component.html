@@ -1,6 +1,6 @@
 <div class="grid-container">
-    <div *ngFor="let pe of printingEditions" class="grid-item">
-        <div routerLink="/detail/{{pe.id}}" style="cursor: pointer;">
+    <div *ngFor="let pe of printingEditions$ | async" class="grid-item">
+        <div routerLink="/printing-editions/detail/{{pe.id}}" style="cursor: pointer;">
             <p>
                 <fa-icon [icon]="faBook" size="5x" [styles]="{'color': '#2196F3'}" transform="rotate--5"></fa-icon>
             </p>

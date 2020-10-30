@@ -25,10 +25,10 @@ export const getAccessToken = createSelector(
 );
 
 export const isLoggedIn = createSelector(
-    getAccessToken,
-    accessToken => !!accessToken
-    // getFeature,
-    // state => state.isLoggedIn
+    // getAccessToken,
+    // accessToken => !!accessToken
+    getFeature,
+    state => state.isLoggedIn
 );
 
 export const isSignedUp = createSelector(

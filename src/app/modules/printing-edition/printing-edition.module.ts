@@ -7,10 +7,12 @@ import { printingEditionReducer, PRINTING_EDITION_FEATURE_NAME } from 'src/app/c
 import { PrintingEditionEffects } from 'src/app/components/printing-edition/printing-edition-store/printing-edition.effects';
 import { MaterialModule } from '../material/material.module';
 import { RouterModule } from '@angular/router';
+import { PrintingEditionDetailComponent } from 'src/app/components/printing-edition/printing-edition-detail/printing-edition-detail.component';
 
 @NgModule({
   declarations: [
-    PrintingEditionComponent
+    PrintingEditionComponent,
+    PrintingEditionDetailComponent
   ],
   imports: [
     CommonModule,

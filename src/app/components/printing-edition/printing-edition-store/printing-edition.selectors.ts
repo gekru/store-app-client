@@ -8,3 +8,8 @@ export const getPrintingEditions = createSelector(
     getFeature,
     state => state.printingEditionState.printingEditionData
 );
+
+export const getPrintingEditionDetail = createSelector(
+    getFeature,
+    state => state.printingEditionState.selectedPrintingEdition
+);
